@@ -1,0 +1,6 @@
+CREATE TABLE tasks(
+    id SERIAL PRIMARY KEY UNIQUE,
+    name VARCHAR(30) NOT NULL,
+    description TEXT NOT NULL,
+    RESULT VARCHAR(20) NOT NULL 
+);
