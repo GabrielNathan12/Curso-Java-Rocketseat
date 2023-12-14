@@ -1,4 +1,4 @@
-# Default values for trabalho-final.
+# Default values for dev-ops.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -8,7 +8,7 @@ image:
   repository: gabrielnathan/dev-ops
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1"
+  tag: "v9"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -71,8 +71,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-
-
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -99,9 +97,10 @@ tolerations: []
 
 affinity: {}
 
+
 postgresql:
   auth:
-    postgresUsername: postgres
-    postgresPassword: postgres
-    postgresDatabase: todolist
-    enableUser: false
+    username: postgres
+    password: admin
+    database: todolist
+    enablePostgresUser: false

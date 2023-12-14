@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "trabalho-final.fullname" . }}
+  name: {{ include "dev-ops.fullname" . }}
   labels:
-    {{- include "trabalho-final.labels" . | nindent 4 }}
+    {{- include "dev-ops.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "trabalho-final.selectorLabels" . | nindent 6 }}
+      {{- include "dev-ops.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "trabalho-final.labels" . | nindent 8 }}
+        {{- include "dev-ops.labels" . | nindent 8 }}
 	{{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "trabalho-final.serviceAccountName" . }}
+      serviceAccountName: {{ include "dev-ops.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -51,6 +51,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
+          envFrom:
+            - secretRef:
+              name: {{ include "dev-ops.fullname" .}}-secret
+            - configMapRef:
+              name: {{ include "dev-ops.fulname" .}}-config
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}

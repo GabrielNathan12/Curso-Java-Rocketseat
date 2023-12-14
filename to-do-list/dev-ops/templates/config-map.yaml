@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "dev-ops.fullname" .}}-config
+  labels: {{- include "dev-ops.labels" . | nindent 4 }}
+data:
+  DB_DIALECT: postgresql
+  DB_HOST: {{ .Release.Name}}-postgresql
+  DB_NAME: {{ .Values.postgresql.auth.postgresDatabase }}
