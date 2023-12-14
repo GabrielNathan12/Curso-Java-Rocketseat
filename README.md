@@ -84,5 +84,9 @@ Requisições disponíveis são as `GET`, `POST`, `DELETE`, `PATH` <br><br>
   `$POD_NAME = kubectl get pods --namespace default -l "app.kubernetes.io/name=dev-ops,app.kubernetes.io/instance=dev-ops" -o jsonpath="{.items[0].metadata.name}"` <br>
   `$CONTAINER_PORT = kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}"` <br>
   `kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT` <br><br>
-  ![image](https://github.com/GabrielNathan12/Curso-Java-Rocketseat/assets/76185909/5ee4c016-d039-47c4-aed4-5a2f34d1aa81)
-  
+  ![image](https://github.com/GabrielNathan12/Curso-Java-Rocketseat/assets/76185909/5ee4c016-d039-47c4-aed4-5a2f34d1aa81) <br><br>
+
+  No arquivo `application.properties` nao esquecer de colocar a informação do serviço que está implantado com o Postgres <br><br>
+  Exemplo: 
+    
+  ![image](https://github.com/GabrielNathan12/Curso-Java-Rocketseat/assets/76185909/71eb4124-e32b-43e7-a73a-853f075ce52e)
